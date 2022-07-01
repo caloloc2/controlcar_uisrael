@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1038045865678",
+    "firebase_url": "https://controluisrael-aa34e-default-rtdb.firebaseio.com",
+    "project_id": "controluisrael-aa34e",
+    "storage_bucket": "controluisrael-aa34e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1038045865678:android:7840a1b4be14a69dd2129f",
+        "android_client_info": {
+          "package_name": "com.nibemi.controluisrael"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1038045865678-dq68ccn3bmfkg6qpn0f7r6et2ps8g358.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApVyK64s0oe7RusHVjcfuNEyzD48Crg3Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1038045865678-dq68ccn3bmfkg6qpn0f7r6et2ps8g358.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
