@@ -40,5 +40,4 @@ while True:
         rostro = cv2.resize(rostro,(150,150),interpolation= cv2.INTER_CUBIC)
         result = face_recognizer.predict(rostro)
 
-     
     time.sleep(0.002)
