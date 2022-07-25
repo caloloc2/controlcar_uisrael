@@ -6,15 +6,17 @@ class Firebase:
 
     def __init__(self):
         self.server = ServerBridge()
-        self.rojo = GPIORasp(19)
+        self.bloqueo = GPIORasp(19)
+        self.activacion = GPIORasp(21)
 
     def lectura(self):
         while(True):
-            data = self.server.get('estado.php')
+            data = self.server.get('index.php')
             print(data)
-            estadoLed = data['estado']['puertas']
-            self.rojo.accion(estadoLed)
-            
+            estadoLed = data['estados']['bloqueo']
+            self.bloqueo.accion(estadoLed)
+            estadoLed = data['estados']['activacion']
+            self.activacion.accion(estadoLed)
             time.sleep(5)
 
 firebase = Firebase()
