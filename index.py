@@ -16,7 +16,6 @@ n = Thread(target = nfc.lectura)
 n.daemon = True
 n.start()
 
-
 # Inicia servicio de GPS
 gps = GPS()
 t = Thread(target = gps.readPosition)
