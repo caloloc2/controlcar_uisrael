@@ -17,7 +17,7 @@ class Firebase:
             self.bloqueo.accion(estadoLed)
             estadoLed = data['estados']['activacion']
             self.activacion.accion(estadoLed)
-            time.sleep(5)
+            time.sleep(2)
 
 firebase = Firebase()
 
