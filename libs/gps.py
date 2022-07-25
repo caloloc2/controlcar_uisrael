@@ -22,7 +22,12 @@ class GPS:
             return 0
     
     def __kph(self, knots):
-        return float(knots) * 1.852
+        try:
+            if (knots != ''):
+                  return float(knots) * 1.852
+        except:
+            return 0
+      
     
     def __explodeData(self, data):
         GPGGA_data_available = data.find(self.module)
