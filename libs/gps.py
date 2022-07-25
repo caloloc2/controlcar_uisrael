@@ -1,11 +1,13 @@
 import time
 import serial
+from httpRequest import ServerBridge
 
 class GPS:
 
     def __init__(self, module = "$GPRMC,"):
         self.gpsModule = serial.Serial("/dev/serial0")
         self.module = module
+        self.internet = ServerBridge()
 
     def __calculoPosition(self, pos = 0):
         decimal = float(pos) / 100.00
@@ -35,7 +37,9 @@ class GPS:
                 received_data = (str)(self.gpsModule.readline())
                 linea = self.__explodeData(received_data)
                 if (linea != None):
-                    print(linea, linea[1])
+                    params = {'lng': linea[0], 'lat': linea[1]}
+                    self.internet.get('ubicacion.php', params)
+                    print(linea)
                 time.sleep(5)
         except KeyboardInterrupt:
             print("Cancelado")
