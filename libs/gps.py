@@ -1,4 +1,4 @@
-import time, threading
+import time
 import serial
 
 class GPS:
@@ -35,6 +35,7 @@ class GPS:
                 received_data = (str)(self.gpsModule.readline())
                 linea = self.__explodeData(received_data)
                 if (linea != None):
-                    print(linea)
+                    print(linea[0])
+                time.sleep(10)
         except KeyboardInterrupt:
             print("Cancelado")
