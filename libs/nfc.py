@@ -1,9 +1,9 @@
 # import sys
 # sys.path.insert(0, '../')
 
-from py532lib.py532lib.i2c import *
-from py532lib.py532lib.frame import *
-from py532lib.py532lib.constants import *
+from py532lib.i2c import *
+from py532lib.frame import *
+from py532lib.constants import *
 
 class NFCLector:
 
