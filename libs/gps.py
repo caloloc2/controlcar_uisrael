@@ -1,6 +1,6 @@
 import time
 import serial
-from httpRequest import ServerBridge
+from libs.httpRequest import ServerBridge
 
 class GPS:
 
