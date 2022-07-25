@@ -3,9 +3,9 @@
 # lib_path = os.path.abspath('../../')
 # sys.path.append(lib_path)
 
-from libs.nfclib.i2c import *
-from libs.nfclib.frame import *
-from libs.nfclib.constants import *
+from py532lib.i2c import *
+from py532lib.frame import *
+from py532lib.constants import *
 
 class NFCLector:
 
