@@ -1,7 +1,14 @@
 from libs.gps import GPS
 import time
 from threading import Thread
-import os
+from libs.firebase import Firebase
+
+# Inicia servicio de lectura de Firebase para activacicon/desactivacion
+firebase = Firebase()
+f = Thread(target = firebase.lectura)
+f.daemon = True
+f.start()
+
 
 # Inicia servicio de GPS
 gps = GPS()

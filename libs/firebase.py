@@ -19,9 +19,9 @@ class Firebase:
             self.activacion.accion(estadoLed)
             time.sleep(2)
 
-firebase = Firebase()
+# firebase = Firebase()
 
-try:
-    firebase.lectura()
-except KeyboardInterrupt:
-    print("cancelado")
+# try:
+#     firebase.lectura()
+# except KeyboardInterrupt:
+#     print("cancelado")
