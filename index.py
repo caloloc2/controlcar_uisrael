@@ -2,7 +2,7 @@ from libs.gps import GPS
 import time
 from threading import Thread
 from libs.firebase import Firebase
-from libs.py532lib.nfc import NFCLector
+from libs.nfclib.nfc import NFCLector
 
 # Inicia servicio de lectura de Firebase para activacicon/desactivacion
 firebase = Firebase()
