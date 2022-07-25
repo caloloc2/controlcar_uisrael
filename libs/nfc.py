@@ -1,7 +1,5 @@
-# import os
-# import sys
-# lib_path = os.path.abspath('../../')
-# sys.path.append(lib_path)
+import sys
+sys.path.insert(0, '../py532lib')
 
 from py532lib.py532lib.i2c import *
 from py532lib.py532lib.frame import *
