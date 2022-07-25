@@ -5,7 +5,7 @@ from libs.httpRequest import ServerBridge
 class GPS:
 
     def __init__(self, module = "$GPRMC,"):
-        self.gpsModule = serial.Serial("/dev/serial1")
+        self.gpsModule = serial.Serial("/dev/serial0")
         self.module = module
         self.internet = ServerBridge()
 
