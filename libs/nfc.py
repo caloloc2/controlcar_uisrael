@@ -21,7 +21,7 @@ class NFCLector:
             codigo = self.__convert__(cardData)
             print(codigo)
 
-            if (codigo == '90674177285458845226483794'):
+            if (codigo == 90674177285458845226483794):
                 self.naranja.accion(True)
                 time.sleep(5)
                 self.naranja.accion(False)
