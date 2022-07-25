@@ -4,7 +4,7 @@ import requests
 class ServerBridge:
 
     def __init__(self):
-        self.url = "http://54.200.49.87/uisrael/"
+        self.url = "http://54.214.117.174/controlcar_uisrael/php/"
     
     def post(self, params = None):
         response = requests.post(self.url, params)

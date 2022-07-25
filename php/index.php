@@ -13,8 +13,8 @@ $bloqueo = $database->getReference('bloqueo')->getSnapshot()->getValue();
 $activacion = $database->getReference('activacion')->getSnapshot()->getValue();
 
 $respuesta['estados'] = array(
-    "bloqueo" => (bool) $bloqueo,
-    "activacion" => (bool) $activacion
+    "bloqueo" => (int) $bloqueo,
+    "activacion" => (int) $activacion
 );
 
 echo json_encode($respuesta);
