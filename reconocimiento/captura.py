@@ -2,7 +2,7 @@ import cv2
 import os
 import imutils
 
-personName = 'Cata'
+personName = 'Calolo'
 dataPath = 'Data'#Cambia a la ruta donde hayas almacenado Data
 personPath = dataPath + '/' + personName
 

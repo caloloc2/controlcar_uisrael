@@ -1,46 +1,25 @@
-import time
+from httpRequest import ServerBridge
 from gpio import GPIORasp
-import firebase_admin
-from firebase_admin import credentials
-from firebase_admin import db
+import time 
 
-# Fetch the service account key JSON file contents
-cred = credentials.Certificate('google-services')
-# Initialize the app with a service account, granting admin privileges
-firebase_admin.initialize_app(cred, {
-    'databaseURL': 'https://controluisrael-aa34e-default-rtdb.firebaseio.com/'
-})
-
-class FirebaseNube:
+class Firebase:
 
     def __init__(self):
-        self.gpio = GPIORasp()
-        return True
-    
+        self.server = ServerBridge()
+        self.rojo = GPIORasp(19)
+
     def lectura(self):
-        while True:
-            dato = ''
-            hora = ''
-            archivo = open("estados.rsp", "r") 
-            for linea in archivo.readlines():		
-                dato+= linea
+        while(True):
+            data = self.server.get('estado.php')
+            print(data)
+            estadoLed = data['estado']['puertas']
+            self.rojo.accion(estadoLed)
+            
+            time.sleep(5)
 
-            dato = db.reference('bloqueo')
+firebase = Firebase()
 
-            if (dato=="1"):
-                print ("Activa/ Desactiva Bloqueo")
-                self.gpio.accion(2, False)
-            if (dato=="2"):
-                print ("Activa/Desactiva Seguros")
-                self.gpio.accion(2, True)
-
-            locacion = db.reference('locacion')
-
-            if (locacion=="1"):
-                print ("Activa/ Desactiva Bloqueo")
-                self.gpio.accion(3, False)
-            if (locacion=="2"):
-                print ("Activa/Desactiva Seguros")
-                self.gpio.accion(3, True)
-
-            time.sleep(1)
+try:
+    firebase.lectura()
+except KeyboardInterrupt:
+    print("cancelado")
