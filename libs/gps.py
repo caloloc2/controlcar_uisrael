@@ -36,6 +36,7 @@ class GPS:
             while True:
                 received_data = (str)(self.gpsModule.readline())
                 linea = self.__explodeData(received_data)
+                print(linea)
                 if (linea != None):
                     # params = {'lng': linea[0], 'lat': linea[1]}
                     # self.internet.get('ubicacion.php', params)
