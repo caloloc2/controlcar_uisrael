@@ -1,6 +1,6 @@
-from py532lib.i2c import *
-from py532lib.frame import *
-from py532lib.constants import *
+from libNFC.py532lib.i2c import *
+from libNFC.py532lib.frame import *
+from libNFC.py532lib.constants import *
 
 class NFCLector:
 
