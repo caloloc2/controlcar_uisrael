@@ -10,11 +10,15 @@ class GPS:
         self.internet = ServerBridge()
 
     def __calculoPosition(self, pos = 0):
-        decimal = float(pos) / 100.00
-        degrees  = int(decimal)
-        mm = (decimal - degrees) / 0.6
-        position = (degrees + mm) * - 1
-        return position
+        try:
+            if (pos != ''):
+                decimal = float(pos) / 100.00
+                degrees  = int(decimal)
+                mm = (decimal - degrees) / 0.6
+                position = (degrees + mm) * - 1
+                return position
+        except Exception:
+            return 0
     
     def __kph(self, knots):
         return float(knots) * 1.852
@@ -36,7 +40,7 @@ class GPS:
             while True:
                 received_data = (str)(self.gpsModule.readline())
                 linea = self.__explodeData(received_data)
-                print(linea)
+                # print(linea)
                 if (linea != None):
                     # params = {'lng': linea[0], 'lat': linea[1]}
                     # self.internet.get('ubicacion.php', params)
