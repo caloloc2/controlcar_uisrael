@@ -2,12 +2,19 @@ from libs.gps import GPS
 import time
 from threading import Thread
 from libs.firebase import Firebase
+from libNFC import NFCLector
 
 # Inicia servicio de lectura de Firebase para activacicon/desactivacion
 firebase = Firebase()
 f = Thread(target = firebase.lectura)
 f.daemon = True
 f.start()
+
+# Inicia servicio de lectura de NFC RFID
+nfc = NFCLector()
+n = Thread(target = nfc.lectura)
+n.daemon = True
+n.start()
 
 
 # Inicia servicio de GPS
