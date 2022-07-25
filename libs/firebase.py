@@ -1,5 +1,5 @@
-from httpRequest import ServerBridge
-from gpio import GPIORasp
+from libs.httpRequest import ServerBridge
+from libs.gpio import GPIORasp
 import time 
 
 class Firebase:
