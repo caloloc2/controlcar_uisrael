@@ -37,8 +37,8 @@ class GPS:
                 received_data = (str)(self.gpsModule.readline())
                 linea = self.__explodeData(received_data)
                 if (linea != None):
-                    params = {'lng': linea[0], 'lat': linea[1]}
-                    self.internet.get('ubicacion.php', params)
+                    # params = {'lng': linea[0], 'lat': linea[1]}
+                    # self.internet.get('ubicacion.php', params)
                     print(linea)
                 time.sleep(5)
         except KeyboardInterrupt:
