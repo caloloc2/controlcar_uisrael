@@ -8,6 +8,7 @@ class GPS:
         self.gpsModule = serial.Serial("/dev/serial0")
         self.module = module
         self.internet = ServerBridge()
+        self.contador = 10
 
     def __calculoPosition(self, pos = 0):
         try:
@@ -37,14 +38,16 @@ class GPS:
 
     def readPosition(self):
         try:
+            i = 0
             while True:
                 received_data = (str)(self.gpsModule.readline())
                 linea = self.__explodeData(received_data)
-                # print(linea)
                 if (linea != None):
-                    # params = {'lng': linea[0], 'lat': linea[1]}
-                    # self.internet.get('ubicacion.php', params)
                     print(linea)
-                # time.sleep(5)
+                    i += 1
+                    if (i >= self.contador):
+                        params = {'lng': linea[0], 'lat': linea[1]}
+                        self.internet.get('ubicacion.php', params)
+                        i = 0
         except KeyboardInterrupt:
             print("Cancelado")
