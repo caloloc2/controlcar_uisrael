@@ -1,6 +1,11 @@
-from libs.py532lib.i2c import *
-from libs.py532lib.frame import *
-from libs.py532lib.constants import *
+import os
+import sys
+lib_path = os.path.abspath('../')
+sys.path.append(lib_path)
+
+from py532lib.i2c import *
+from py532lib.frame import *
+from py532lib.constants import *
 
 class NFCLector:
 
@@ -14,4 +19,4 @@ class NFCLector:
     def lectura(self):
         while(True):
             cardData = self.pn532.read_mifare().get_data()
-            print(self.__convert__(cardData))
+            print(self.__convert__(cardData))      
