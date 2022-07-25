@@ -35,7 +35,7 @@ class GPS:
                 received_data = (str)(self.gpsModule.readline())
                 linea = self.__explodeData(received_data)
                 if (linea != None):
-                    print(linea[0])
-                time.sleep(10)
+                    print(linea, linea[1])
+                # time.sleep(10)
         except KeyboardInterrupt:
             print("Cancelado")
