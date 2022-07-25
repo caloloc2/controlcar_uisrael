@@ -9,11 +9,15 @@ $factory = (new Factory)->withServiceAccount('llave.json')->withDatabaseUri('htt
 
 $database = $factory->createDatabase();
 
+$respuesta['estado'] = false;
 
 if (((isset($_GET['lng'])) && (!empty($_GET['lng']))) && ((isset($_GET['lat'])) && (!empty($_GET['lat'])))){
     
     $database->getReference('locacion/longitud')->set($_GET['lng']);
     $database->getReference('locacion/latitud')->set($_GET['lat']);
 
-    echo "ok";
+    $respuesta['estado'] = true;
 }
+
+
+echo json_encode($respuesta);
