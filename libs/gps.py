@@ -8,7 +8,7 @@ class GPS:
         self.gpsModule = serial.Serial("/dev/serial0")
         self.module = module
         self.internet = ServerBridge()
-        self.contador = 10
+        self.contador = 30
 
     def __calculoPosition(self, pos = 0):
         try:
@@ -18,7 +18,7 @@ class GPS:
                 mm = (decimal - degrees) / 0.6
                 position = (degrees + mm) * - 1
                 return position
-        except Exception:
+        except:
             return 0
     
     def __kph(self, knots):
