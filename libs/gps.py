@@ -40,6 +40,6 @@ class GPS:
                     # params = {'lng': linea[0], 'lat': linea[1]}
                     # self.internet.get('ubicacion.php', params)
                     print(linea)
-                time.sleep(5)
+                # time.sleep(5)
         except KeyboardInterrupt:
             print("Cancelado")
