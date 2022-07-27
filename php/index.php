@@ -11,10 +11,12 @@ $database = $factory->createDatabase();
 
 $bloqueo = $database->getReference('bloqueo')->getSnapshot()->getValue();
 $activacion = $database->getReference('activacion')->getSnapshot()->getValue();
+$desactivacion = $database->getReference('desactivacion')->getSnapshot()->getValue();
 
 $respuesta['estados'] = array(
     "bloqueo" => (int) $bloqueo,
-    "activacion" => (int) $activacion
+    "activacion" => (int) $activacion,
+    "desactivacion" => (int) $desactivacion
 );
 
 echo json_encode($respuesta);
