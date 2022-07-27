@@ -10,7 +10,9 @@ class Firebase:
         self.activacion = GPIORasp(16)
         self.desactivacion = GPIORasp(20)
 
-        self.alarma = GPIORasp(24, 0)
+        self.ahorro = GPIORasp(24, 0)
+        self.alarma = GPIORasp(23, 0)
+        self.cambioAlarma = False
 
     def lectura(self):
         while(True):
@@ -26,7 +28,15 @@ class Firebase:
             self.desactivacion.accion(estadoLed)
 
             estadoAlarma = self.alarma.read()
-            print(estadoAlarma)
+            if (estadoAlarma == 0):
+                params = {'valor': 1}
+                self.server.get('alarma.php', params)
+                self.cambioAlarma =  True 
+            elif (estadoAlarma == 1):
+                if (self.cambioAlarma):
+                    params = {'valor': 1}
+                    self.server.get('alarma.php', params)
+                    self.cambioAlarma = False
 
             apagado = data['estados']['apagado']
             if (apagado == 1):
