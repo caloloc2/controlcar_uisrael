@@ -10,7 +10,7 @@ class Firebase:
         self.activacion = GPIORasp(16)
         self.desactivacion = GPIORasp(20)
 
-        self.alarma = GPIORasp(23, 0)
+        self.alarma = GPIORasp(24, 0)
 
     def lectura(self):
         while(True):
