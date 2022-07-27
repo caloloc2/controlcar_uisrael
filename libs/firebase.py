@@ -1,6 +1,6 @@
 from libs.httpRequest import ServerBridge
 from libs.gpio import GPIORasp
-import time 
+import time, os
 
 class Firebase:
 
@@ -22,4 +22,8 @@ class Firebase:
 
             estadoLed = data['estados']['desactivacion']
             self.desactivacion.accion(estadoLed)
+
+            apagado = data['estados']['apagado']
+            if (apagado == 1):
+                os.system("sudo shutdown -h now")
             time.sleep(2)
