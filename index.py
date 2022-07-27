@@ -30,4 +30,5 @@ try:
     while True:
         time.sleep(0.002)
 except KeyboardInterrupt:
+    setup.cancel()
     print("cancelado")

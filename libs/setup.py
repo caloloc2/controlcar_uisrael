@@ -71,6 +71,9 @@ class Setup():
         except:
             return None
     
+    def cancel(self):
+        self.rojo.accion(False)
+    
     def set_parameter(self, parameter, value):
         ind=0
         for k in self._data[self._module]:
