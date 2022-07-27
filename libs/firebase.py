@@ -6,7 +6,7 @@ class Firebase:
 
     def __init__(self):
         self.server = ServerBridge()
-        self.bloqueo = GPIORasp(19)
+        self.bloqueo = GPIORasp(16)
         self.activacion = GPIORasp(21)
 
     def lectura(self):
