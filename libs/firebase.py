@@ -31,12 +31,12 @@ class Firebase:
             if (estadoAlarma == 0):
                 params = {'valor': 1}
                 self.server.get('alarma.php', params)
-                self.cambioAlarma =  False 
+                self.cambioAlarma =  True
             elif (estadoAlarma == 1):
-                if (self.cambioAlarma == False):
-                    params = {'valor': 1}
+                if (self.cambioAlarma):
+                    params = {'valor': 0}
                     self.server.get('alarma.php', params)
-                    self.cambioAlarma = True
+                    self.cambioAlarma = False
 
             apagado = data['estados']['apagado']
             if (apagado == 1):
