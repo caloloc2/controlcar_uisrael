@@ -25,7 +25,7 @@ class NFCLector:
 
             if (codigo == 90674177285458845226483794):
                 self.naranja.accion(True)
-                params = {'valor': 0}
+                params = {'valor': 1}
                 self.server.get('inicio.php', params)
                 time.sleep(5)
                 self.naranja.accion(False)
