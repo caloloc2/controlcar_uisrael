@@ -5,6 +5,8 @@ from libs.firebase import Firebase
 from libs.nfc import NFCLector
 from libs.setup import Setup
 
+time.sleep(30)
+
 # Inicializa las variables de configuracion
 setup = Setup()
 

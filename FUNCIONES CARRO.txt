@@ -1,12 +1,8 @@
-
-dipswitch 1 (en on todi funciona - off todo bloqueado)
-dipswitch 2 (manda app notificacion de q alarma se activo)
-
 poner texto de modo ahorro energia
 alarmas modo ahorro de energia (n dias)
-
-
 boton apagar sistema desde app
 led rojo enviar siempre q este prendido
 azul (activar seguros) y amarillo (desactivar segors) --- 1 seg prender y apagar
 verde (bloqueo) (solo activa/descativa con app al presionar 3 o mas segundos)
+dipswitch 1 (en on todi funciona - off todo bloqueado)
+dipswitch 2 (manda app notificacion de q alarma se activo)
