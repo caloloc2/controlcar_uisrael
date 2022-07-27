@@ -10,6 +10,8 @@ class Firebase:
         self.activacion = GPIORasp(16)
         self.desactivacion = GPIORasp(20)
 
+        self.alarma = GPIORasp(23, 0)
+
     def lectura(self):
         while(True):
             data = self.server.get('index.php')
@@ -22,6 +24,9 @@ class Firebase:
 
             estadoLed = data['estados']['desactivacion']
             self.desactivacion.accion(estadoLed)
+
+            estadoAlarma = self.alarma.read()
+            print(estadoAlarma)
 
             apagado = data['estados']['apagado']
             if (apagado == 1):
