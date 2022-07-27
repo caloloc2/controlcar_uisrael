@@ -3,6 +3,10 @@ import time
 from threading import Thread
 from libs.firebase import Firebase
 from libs.nfc import NFCLector
+from libs.setup import Setup
+
+# Inicializa las variables de configuracion
+setup = Setup()
 
 # Inicia servicio de lectura de Firebase para activacicon/desactivacion
 firebase = Firebase()

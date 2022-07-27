@@ -18,10 +18,3 @@ class Firebase:
             estadoLed = data['estados']['activacion']
             self.activacion.accion(estadoLed)
             time.sleep(2)
-
-# firebase = Firebase()
-
-# try:
-#     firebase.lectura()
-# except KeyboardInterrupt:
-#     print("cancelado")
