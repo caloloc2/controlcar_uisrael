@@ -19,7 +19,7 @@ class Camara:
         self.face_recognizer = cv2.face.FisherFaceRecognizer_create()
         self.face_recognizer = cv2.face.LBPHFaceRecognizer_create()
 
-        self.face_recognizer.read(self.path + 'modeloLBPHFace.xml')
+        self.face_recognizer.read(self.path + 'modeloLBPHFaceNuevo.xml')
         self.face_cascade = cv2.CascadeClassifier(self.path + 'haarcascade_frontalface_default.xml')
         print("[INFO] Listo para reconocimiento.")
 
@@ -112,7 +112,7 @@ class Camara:
 
         print("[INFO] Entrenando...")
         self.face_recognizer.train(facesData, np.array(labels))
-        self.face_recognizer.write(self.path + 'modeloLBPHFace.xml')
+        self.face_recognizer.write(self.path + 'modeloLBPHFaceNuevo.xml')
         print("[INFO] Modelo almacenado.")
 
         return False
