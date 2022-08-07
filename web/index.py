@@ -78,13 +78,16 @@ def index():
 def gen():
     global bloqueoActivado
     global nuevoUsuario
+    contador = 0
     while True:
         imagen, reconocido, usuario = camara.reconocimiento()
         if (reconocido and bloqueoActivado and nuevoUsuario == False):
-            print("[INFO] Se ha activado el automovil.")
-            bloqueoActivado = False 
-            camara.setEstado(0)
-            bloqueo.accion(False)
+            if (contador >= 20):
+                print("[INFO] Se ha activado el automovil.")
+                bloqueoActivado = False 
+                camara.setEstado(0)
+                bloqueo.accion(False)
+            contador+=1
         
         if (nuevoUsuario and usuario == False):
             print('[INFO] Termina toma de perfil de usuario.')
