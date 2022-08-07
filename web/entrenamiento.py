@@ -2,7 +2,7 @@ import cv2
 import os
 import numpy as np
 
-dataPath = '/home/pi/controlcar_uisrael/web/Data'#Cambia a la ruta donde hayas almacenado Data
+dataPath = '/home/pi/controlcar_uisrael/web/Data/'#Cambia a la ruta donde hayas almacenado Data
 peopleList = os.listdir(dataPath)
 print('Lista de personas: ', peopleList)
 
@@ -39,5 +39,5 @@ face_recognizer.train(facesData, np.array(labels))
 # Almacenando el modelo obtenido
 #face_recognizer.write('modeloEigenFace.xml')
 #face_recognizer.write('modeloFisherFace.xml')
-face_recognizer.write('modeloLBPHFaceNuevo.xml')
+face_recognizer.write(dataPath + 'modeloLBPHFaceNuevo.xml')
 print("Modelo almacenado...")
