@@ -1,5 +1,6 @@
 from ast import Not
 from glob import glob
+from re import A
 from flask import Flask, Response, render_template
 from libs.camara import Camara
 from threading import Thread
@@ -37,6 +38,7 @@ def revision():
         data = servidor.get('anadirUsuario.php')
         print(data['estado'])
         if (data['estado']):
+            camara.setEstado(2, 'Nombre')
             nuevoUsuario = True 
         
         time.sleep(1)

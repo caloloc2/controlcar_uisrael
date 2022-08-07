@@ -27,7 +27,7 @@ class Camara:
         self.nuevoUsuario = False
         self.count = 0
     
-    def setEstado(self, estado):
+    def setEstado(self, estado, nombre = "NombreDefault"):
         self.estado = estado
         if (estado == 0):
             self.reconocido = False 
