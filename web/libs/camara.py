@@ -33,7 +33,7 @@ class Camara:
             
                 # LBPHFace
                 if result[1] < 70:
-                    cv2.putText(image,'{}'.format(imagePaths[result[0]]),(x,y-25),2,1.1,(0,255,0),1,cv2.LINE_AA)
+                    cv2.putText(image,'{}'.format(self.imagePaths[result[0]]),(x,y-25),2,1.1,(0,255,0),1,cv2.LINE_AA)
                     cv2.rectangle(image, (x,y),(x+w,y+h),(0,255,0),2)
                 else:
                     cv2.putText(image,'Desconocido',(x,y-20),2,0.8,(0,0,255),1,cv2.LINE_AA)
