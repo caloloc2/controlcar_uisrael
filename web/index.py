@@ -2,6 +2,10 @@ from flask import Flask, Response, render_template
 from libs.camara import Camara
 from threading import Thread
 from libs.firebase import Firebase
+from libs.setup import Setup
+
+# Inicializa las variables de configuracion
+setup = Setup()
 
 camara = Camara()
 app = Flask(__name__)
@@ -29,3 +33,5 @@ def video_feed():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=2204, threaded=True)
+    while True:
+        print("si")
