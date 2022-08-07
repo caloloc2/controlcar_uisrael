@@ -9,6 +9,7 @@ from libs.firebase import Firebase
 from libs.setup import Setup
 from libs.gpio import GPIORasp
 from libs.httpRequest import ServerBridge
+from libs.gps import GPS
 import time
 
 bloqueo = GPIORasp(21)
@@ -25,6 +26,12 @@ setup = Setup()
 
 camara = Camara()
 app = Flask(__name__)
+
+# Inicia servicio de GPS
+gps = GPS()
+t = Thread(target = gps.readPosition)
+t.daemon = True
+t.start()
 
 firebase = Firebase()
 f = Thread(target = firebase.lectura)
@@ -87,6 +94,7 @@ def gen():
                 bloqueoActivado = False 
                 camara.setEstado(0)
                 bloqueo.accion(False)
+                contador = 0
             contador+=1
         
         if (nuevoUsuario and usuario == False):
