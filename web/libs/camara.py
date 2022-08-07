@@ -3,7 +3,7 @@ import os, time, cv2, imutils
 class Camara:
 
     def __init__(self):
-        self.dataPath = '/home/pi/controlcar_uisrael/Data'
+        self.dataPath = '/home/pi/controlcar_uisrael/web/Data'
         self.imagePaths = os.listdir(self.dataPath)
 
         personName = 'Otra'
