@@ -7,7 +7,6 @@ class Camara:
         self.path = '/home/pi/controlcar_uisrael/web/'
         self.dataPath = '/home/pi/controlcar_uisrael/web/Data'
         self.imagePaths = os.listdir(self.dataPath)
-        self.peopleList = os.listdir(self.dataPath)
 
         personName = 'Otra'
         self.personPath = self.dataPath + '/' + personName
@@ -96,6 +95,9 @@ class Camara:
     
     def entrenamiento(self):
         print("[INFO] Iniciando entrenamiento.")
+        
+        self.peopleList = os.listdir(self.dataPath)
+        
         time.sleep(2)
         labels = []
         facesData = []
