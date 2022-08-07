@@ -51,8 +51,9 @@ def index():
 def gen():
     while True:
         imagen, reconocido, usuario = camara.reconocimiento()
-        if (reconocido):
+        if (reconocido and not bloqueoActivado):
             print("[INFO] "+str(usuario)+ " ha activado el automovil.")
+            bloqueoActivado = True 
             camara.setEstado(0)
             bloqueo.accion(False)
 
