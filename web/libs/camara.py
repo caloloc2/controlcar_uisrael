@@ -106,6 +106,7 @@ class Camara:
             print('[Info] Leyendo las imágenes')
 
             for fileName in os.listdir(personPath):
+                print('Rostros: ', nameDir + '/' + fileName)
                 labels.append(label)
                 facesData.append(cv2.imread(personPath+'/'+fileName,0))
             label = label + 1
