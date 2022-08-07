@@ -6,7 +6,11 @@ from libs.setup import Setup
 from libs.gpio import GPIORasp
 import time
 
+bloqueo = GPIORasp(21)
 llave = GPIORasp(23, 0)
+
+# Activa el bloqueo
+bloqueo.accion(True)
 
 # Inicializa las variables de configuracion
 setup = Setup()
