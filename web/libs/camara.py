@@ -5,18 +5,19 @@ class Camara:
     def __init__(self):
         self.dataPath = 'Data'
         self.imagePaths = os.listdir(self.dataPath)
-        print("[Iniciando camara...]")
+        print("[INFO] Iniciando camara.")
         self.video = cv2.VideoCapture(0)
-        print("[Iniciando reconocimiento...]")
+        print("[INFO] Iniciando reconocimiento.")
         self.face_recognizer = cv2.face.EigenFaceRecognizer_create()
         self.face_recognizer = cv2.face.FisherFaceRecognizer_create()
         self.face_recognizer = cv2.face.LBPHFaceRecognizer_create()
 
         self.face_recognizer.read('modeloLBPHFace.xml')
         self.face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
-        print("[Listo para reconocimiento]")
+        print("[INFO] Listo para reconocimiento.")
 
         self.estado = 0
+        self.reconocido = False 
     
     def setEstado(self, estado):
         self.estado = estado
@@ -48,7 +49,7 @@ class Camara:
                 except:
                     print("Error")
 
-            return cv2.imencode('.jpg', image)
+            return [cv2.imencode('.jpg', image), self.reconocido]
     
     def captura(self):
         return False

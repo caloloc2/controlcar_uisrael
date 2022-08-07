@@ -11,6 +11,7 @@ llave = GPIORasp(23, 0)
 
 # Activa el bloqueo
 bloqueo.accion(True)
+print("[INFO] Bloqueo activado automaticamente.")
 
 # Inicializa las variables de configuracion
 setup = Setup()
@@ -27,7 +28,7 @@ def switchLlave():
     while True:
         estadoAlarma = llave.read()
         if (estadoAlarma == 0):
-            print("Contacto accionado")
+            # print("Contacto accionado")
             camara.setEstado(1)
             # params = {'valor': 1}
             # self.server.get('alarma.php', params)
@@ -35,7 +36,7 @@ def switchLlave():
             camara.setEstado(0)
             # params = {'valor': 0}
             # self.server.get('alarma.php', params)
-            print("Sin Contacto")
+            # print("Sin Contacto")
         time.sleep(1)
 
 sw = Thread(target = switchLlave)
@@ -48,7 +49,8 @@ def index():
 
 def gen():
     while True:
-        ret, jpeg = camara.reconocimiento()
+        imagen, reconocido = camara.reconocimiento()
+        ret, jpeg = imagen
         frame = jpeg.tobytes()
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
