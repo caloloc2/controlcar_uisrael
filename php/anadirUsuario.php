@@ -18,8 +18,8 @@ $respuesta['estado'] = false;
 if ($nuevo == 1){
     $respuesta['estado'] = true;
     $respuesta['nombre'] = $nombreUsuario;
-    $respuesta['entrena'] = (int) $entrena;
-
 }
+
+$respuesta['entrena'] = (int) $entrena;
 
 echo json_encode($respuesta);
