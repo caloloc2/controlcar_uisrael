@@ -49,6 +49,7 @@ def index():
     return render_template('index.html')
 
 def gen():
+    global bloqueoActivado
     while True:
         imagen, reconocido, usuario = camara.reconocimiento()
         if (reconocido and bloqueoActivado):
