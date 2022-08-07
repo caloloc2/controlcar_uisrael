@@ -1,10 +1,14 @@
-import os, time, cv2
+import os, time, cv2, imutils
 
 class Camara:
 
     def __init__(self):
         self.dataPath = 'Data'
         self.imagePaths = os.listdir(self.dataPath)
+
+        personName = 'Otra'
+        self.personPath = self.dataPath + '/' + personName
+
         print("[INFO] Iniciando camara.")
         self.video = cv2.VideoCapture(0)
         print("[INFO] Iniciando reconocimiento.")
@@ -25,6 +29,8 @@ class Camara:
         if (estado == 0):
             self.reconocido = False 
             self.usuario = None
+        elif(estado == 2):
+            print("[INFO] Iniciando capturas de usuario.")
 
     def reconocimiento(self):
         while True:
@@ -54,6 +60,22 @@ class Camara:
                                 cv2.rectangle(image, (x,y),(x+w,y+h),(0,0,255),2)
                 except:
                     print("Error")
+            
+            elif (self.estado == 2):                
+                frame =  imutils.resize(frame, width=640)
+                gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+                auxFrame = frame.copy()
+
+                faces = self.face_cascade.detectMultiScale(gray,1.3,5)
+                for (x,y,w,h) in faces:
+                    cv2.rectangle(frame, (x,y),(x+w,y+h),(0,255,0),2)
+                    rostro = auxFrame[y:y+h,x:x+w]
+                    rostro = cv2.resize(rostro,(150,150),interpolation=cv2.INTER_CUBIC)
+                    cv2.imwrite(self.personPath + '/rotro_{}.jpg'.format(count),rostro)
+                    count = count + 1
+                
+                if (count>=300):
+                    self.estado = 0
 
             return [cv2.imencode('.jpg', image), self.reconocido, self.usuario]
     
