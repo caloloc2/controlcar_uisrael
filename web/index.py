@@ -29,7 +29,7 @@ def switchLlave():
         estadoAlarma = llave.read()
         if (estadoAlarma == 0):
             # print("Contacto accionado")
-            camara.setEstado(2)
+            camara.setEstado(1)
             # params = {'valor': 1}
             # self.server.get('alarma.php', params)
         elif (estadoAlarma == 1):
