@@ -3,6 +3,7 @@ from libs.camara import Camara
 from threading import Thread
 from libs.firebase import Firebase
 from libs.setup import Setup
+import time
 
 # Inicializa las variables de configuracion
 setup = Setup()
@@ -14,6 +15,15 @@ firebase = Firebase()
 f = Thread(target = firebase.lectura)
 f.daemon = True
 f.start()
+
+def switchLlave():
+    while True:
+        print("si")
+        time.sleep(5)
+
+sw = Thread(target = switchLlave)
+sw.daemon = True
+sw.start()
 
 @app.route('/')
 def index():
@@ -33,5 +43,4 @@ def video_feed():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=2204, threaded=True)
-    while True:
-        print("si")
+    
