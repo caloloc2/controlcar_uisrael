@@ -1,5 +1,6 @@
 import cv2
 import os
+from libs.httpRequest import ServerBridge
 
 class Camara:
 
@@ -42,5 +43,7 @@ class Camara:
                             cv2.rectangle(image, (x,y),(x+w,y+h),(0,0,255),2)
             except:
                 print("Error")
-                
+
             return cv2.imencode('.jpg', image)
+    
+    def captura(self):
