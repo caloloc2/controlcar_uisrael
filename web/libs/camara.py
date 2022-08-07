@@ -22,6 +22,9 @@ class Camara:
     
     def setEstado(self, estado):
         self.estado = estado
+        if (estado == 0):
+            self.reconocido = False 
+            self.usuario = None
 
     def reconocimiento(self):
         while True:
@@ -37,7 +40,7 @@ class Camara:
                         rostro = cv2.resize(rostro,(150,150),interpolation= cv2.INTER_CUBIC)
                         result = self.face_recognizer.predict(rostro)
 
-                        cv2.putText(image,"Contacto activado. Reconociendo usuario.",(x,y-5),1,1.3,(255,255,0),1,cv2.LINE_AA)
+                        cv2.putText(image,"Contacto activado. Reconociendo.",(x,y-5),1,1.3,(255,255,0),1,cv2.LINE_AA)
                     
                         if (len(result) > 0):
                             # LBPHFace
