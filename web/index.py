@@ -31,8 +31,9 @@ servidor = ServerBridge()
 def revision():
     global servidor
     data = servidor.get('anadirUsuario.php')
-    print(data)
-    # estadoLed = data['estados']['bloqueo']
+    print(data['estado'])
+    time.sleep(1)
+    # estadoLed = data['estado']['bloqueo']
 
 sv = Thread(target = revision)
 sv.daemon = True
