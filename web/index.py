@@ -3,7 +3,10 @@ from libs.camara import Camara
 from threading import Thread
 from libs.firebase import Firebase
 from libs.setup import Setup
+from libs.gpio import GPIORasp
 import time
+
+llave = GPIORasp(23, 0)
 
 # Inicializa las variables de configuracion
 setup = Setup()
@@ -18,8 +21,16 @@ f.start()
 
 def switchLlave():
     while True:
-        print("si")
-        time.sleep(5)
+        estadoAlarma = llave.read()
+        if (estadoAlarma == 0):
+            print("Contacto accionado")
+            # params = {'valor': 1}
+            # self.server.get('alarma.php', params)
+        elif (estadoAlarma == 1):
+            # params = {'valor': 0}
+            # self.server.get('alarma.php', params)
+            print("Sin Contacto")
+        time.sleep(1)
 
 sw = Thread(target = switchLlave)
 sw.daemon = True
