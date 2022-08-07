@@ -6,6 +6,7 @@ class Camara:
         self.path = '/home/pi/controlcar_uisrael/web/'
         self.dataPath = '/home/pi/controlcar_uisrael/web/Data'
         self.imagePaths = os.listdir(self.dataPath)
+        self.peopleList = os.listdir(self.dataPath)
 
         personName = 'Otra'
         self.personPath = self.dataPath + '/' + personName
@@ -34,6 +35,7 @@ class Camara:
             self.usuario = None
         elif(estado == 2):
             print("[INFO] Iniciando capturas de usuario.")
+            self.personPath = self.dataPath + '/' + nombre
 
     def reconocimiento(self):
         while True:
@@ -88,8 +90,28 @@ class Camara:
                     self.estado = 0
                     self.count = 0
                     self.nuevoUsuario = False
+                    self.entrenamiento()
 
             return [cv2.imencode('.jpg', image), self.reconocido, self.nuevoUsuario]
     
-    def captura(self):
+    def entrenamiento(self):
+        print("[INFO] Iniciando entrenamiento.")
+        labels = []
+        facesData = []
+        label = 0
+
+        for nameDir in self.peopleList:
+            personPath = self.dataPath + '/' + nameDir
+            print('[Info] Leyendo las imágenes')
+
+            for fileName in os.listdir(personPath):
+                labels.append(label)
+                facesData.append(cv2.imread(personPath+'/'+fileName,0))
+            label = label + 1
+
+            print("[INFO] Entrenando...")
+            self.face_recognizer.train(facesData, np.array(labels))
+            self.face_recognizer.write('modeloLBPHFace.xml')
+            print("[INFO] Modelo almacenado.")
+
         return False
