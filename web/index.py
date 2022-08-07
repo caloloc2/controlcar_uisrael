@@ -9,7 +9,7 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-def gen(video):
+def gen():
     while True:
         ret, jpeg = camara.reconocimiento()
         frame = jpeg.tobytes()
@@ -18,8 +18,7 @@ def gen(video):
 
 @app.route('/video_feed')
 def video_feed():
-    global video
-    return Response(gen(video),
+    return Response(gen(),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == '__main__':
