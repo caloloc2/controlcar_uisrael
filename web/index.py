@@ -38,7 +38,9 @@ def revision():
         data = servidor.get('anadirUsuario.php')
         if (data['estado']):
             camara.setEstado(2, data['nombre'])
-            nuevoUsuario = True 
+            nuevoUsuario = True
+        elif(data['entrena']):
+            camara.entrenamiento()
         
         time.sleep(1)
 

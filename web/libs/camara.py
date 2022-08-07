@@ -91,12 +91,12 @@ class Camara:
                     self.estado = 0
                     self.count = 0
                     self.nuevoUsuario = False
-                    self.entrenamiento()
 
             return [cv2.imencode('.jpg', image), self.reconocido, self.nuevoUsuario]
     
     def entrenamiento(self):
         print("[INFO] Iniciando entrenamiento.")
+        time.sleep(2)
         labels = []
         facesData = []
         label = 0
