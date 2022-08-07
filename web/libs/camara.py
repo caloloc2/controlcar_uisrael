@@ -110,9 +110,9 @@ class Camara:
                 facesData.append(cv2.imread(personPath+'/'+fileName,0))
             label = label + 1
 
-            print("[INFO] Entrenando...")
-            self.face_recognizer.train(facesData, np.array(labels))
-            self.face_recognizer.write('modeloLBPHFace.xml')
-            print("[INFO] Modelo almacenado.")
+        print("[INFO] Entrenando...")
+        self.face_recognizer.train(facesData, np.array(labels))
+        self.face_recognizer.write(self.path + 'modeloLBPHFace.xml')
+        print("[INFO] Modelo almacenado.")
 
         return False
