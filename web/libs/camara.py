@@ -62,7 +62,7 @@ class Camara:
                     print("Error")
             
             elif (self.estado == 2):                
-                frame =  imutils.resize(frame, width=640)
+                frame =  imutils.resize(image, width=640)
                 gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
                 auxFrame = frame.copy()
 
@@ -71,7 +71,7 @@ class Camara:
                     cv2.rectangle(frame, (x,y),(x+w,y+h),(0,255,0),2)
                     rostro = auxFrame[y:y+h,x:x+w]
                     rostro = cv2.resize(rostro,(150,150),interpolation=cv2.INTER_CUBIC)
-                    cv2.imwrite(self.personPath + '/rotro_{}.jpg'.format(count),rostro)
+                    cv2.imwrite(self.personPath + '/rostro_{}.jpg'.format(count),rostro)
                     count = count + 1
                 
                 if (count>=300):
