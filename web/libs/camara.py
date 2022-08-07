@@ -6,7 +6,6 @@ class Camara:
     def __init__(self):
         self.path = '/home/pi/controlcar_uisrael/web/'
         self.dataPath = '/home/pi/controlcar_uisrael/web/Data'
-        self.imagePaths = os.listdir(self.dataPath)
 
         personName = 'Otra'
         self.personPath = self.dataPath + '/' + personName
@@ -42,6 +41,7 @@ class Camara:
             success, image = self.video.read()
 
             if (self.estado == 1):
+                self.imagePaths = os.listdir(self.dataPath)
                 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
                 auxFrame = gray.copy()
                 faces = self.face_cascade.detectMultiScale(gray, 1.3, 5)
@@ -97,7 +97,7 @@ class Camara:
         print("[INFO] Iniciando entrenamiento.")
         
         self.peopleList = os.listdir(self.dataPath)
-        
+
         time.sleep(2)
         labels = []
         facesData = []
