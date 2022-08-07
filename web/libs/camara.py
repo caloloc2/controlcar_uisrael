@@ -3,6 +3,7 @@ import os, time, cv2, imutils
 class Camara:
 
     def __init__(self):
+        self.path = '/home/pi/controlcar_uisrael/web/'
         self.dataPath = '/home/pi/controlcar_uisrael/web/Data'
         self.imagePaths = os.listdir(self.dataPath)
 
@@ -16,8 +17,8 @@ class Camara:
         self.face_recognizer = cv2.face.FisherFaceRecognizer_create()
         self.face_recognizer = cv2.face.LBPHFaceRecognizer_create()
 
-        self.face_recognizer.read('modeloLBPHFace.xml')
-        self.face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+        self.face_recognizer.read(self.path + 'modeloLBPHFace.xml')
+        self.face_cascade = cv2.CascadeClassifier(self.path + 'haarcascade_frontalface_default.xml')
         print("[INFO] Listo para reconocimiento.")
 
         self.estado = 0
@@ -69,10 +70,10 @@ class Camara:
 
                 faces = self.face_cascade.detectMultiScale(gray,1.3,5)
                 for (x,y,w,h) in faces:
-                    cv2.rectangle(frame, (x,y),(x+w,y+h),(0,255,0),2)
+                    cv2.rectangle(image, (x,y),(x+w,y+h),(0,0,255),2)
                     rostro = auxFrame[y:y+h,x:x+w]
                     rostro = cv2.resize(rostro,(150,150),interpolation=cv2.INTER_CUBIC)
-                    cv2.imwrite(self.personPath + '/rostro_{}.jpg'.format(self.count),rostro)
+                    cv2.imwrite(self.personPath + '/rostro_{}.jpg'.format(self.count), rostro)
                     self.count = self.count + 1
                 
                 if (self.count >= 300):
