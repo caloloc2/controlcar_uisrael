@@ -1,5 +1,6 @@
 import os, time, cv2
 from libs.httpRequest import ServerBridge
+from threading import Thread
 
 class Camara:
 
@@ -18,7 +19,9 @@ class Camara:
         self.face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
         print("[Listo para reconocimiento]")
 
-        self.crontab()
+        f = Thread(target = self.crontab)
+        f.daemon = True
+        f.start()
     
     def crontab(self):
         while True:
