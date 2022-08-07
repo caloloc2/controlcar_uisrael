@@ -75,6 +75,7 @@ class Camara:
                     count = count + 1
                 
                 if (count>=300):
+                    print("[INFO] Captura de perfil de usuario terminado.")
                     self.estado = 0
 
             return [cv2.imencode('.jpg', image), self.reconocido, self.usuario]
