@@ -82,7 +82,7 @@ def gen():
     while True:
         imagen, reconocido, usuario = camara.reconocimiento()
         if (reconocido and bloqueoActivado and nuevoUsuario == False):
-            if (contador >= 20):
+            if (contador >= 50):
                 print("[INFO] Se ha activado el automovil.")
                 bloqueoActivado = False 
                 camara.setEstado(0)
