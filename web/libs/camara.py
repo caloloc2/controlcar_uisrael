@@ -1,10 +1,10 @@
-import cv2
-import os
+import os, time, cv2
 from libs.httpRequest import ServerBridge
 
 class Camara:
 
     def __init__(self):
+        self.servidor = ServerBridge()
         self.dataPath = 'Data'
         self.imagePaths = os.listdir(self.dataPath)
         print("[Iniciando camara...]")
@@ -17,6 +17,15 @@ class Camara:
         self.face_recognizer.read('modeloLBPHFace.xml')
         self.face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
         print("[Listo para reconocimiento]")
+
+        self.crontab()
+    
+    def crontab(self):
+        while True:
+            data = self.servidor.get('index.php')
+            print(data)
+            time.sleep(3)
+
 
     def reconocimiento(self):
         while True:

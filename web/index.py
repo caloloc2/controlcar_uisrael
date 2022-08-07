@@ -2,7 +2,6 @@ from flask import Flask, Response, render_template
 from libs.camara import Camara
 
 camara = Camara()
-
 app = Flask(__name__)
 
 @app.route('/')
