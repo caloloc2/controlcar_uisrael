@@ -81,7 +81,7 @@ def gen():
             camara.setEstado(0)
             bloqueo.accion(False)
         
-        if (nuevoUsuario and usuario):
+        if (nuevoUsuario and usuario == False):
             print('[INFO] Termina toma de perfil de usuario.')
             nuevoUsuario = False 
 

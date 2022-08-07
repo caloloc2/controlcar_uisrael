@@ -65,7 +65,12 @@ class Camara:
                     print("Error")
             
             elif (self.estado == 2):
-                self.nuevoUsuario = True                
+                if not os.path.exists(self.personPath):
+                    print('[INFO] Carpeta creada: ', self.personPath)
+                    os.makedirs(self.personPath)
+
+                self.nuevoUsuario = True  
+                              
                 frame =  imutils.resize(image, width=640)
                 gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
                 auxFrame = frame.copy()
