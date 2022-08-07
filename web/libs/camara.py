@@ -111,8 +111,8 @@ class Camara:
             label = label + 1
 
         print("[INFO] Entrenando...")
-        self.face_recognizer.train(facesData, np.array(labels))
-        self.face_recognizer.write(self.path + 'modeloLBPHFaceNuevo.xml')
+        # self.face_recognizer.train(facesData, np.array(labels))
+        # self.face_recognizer.write(self.path + 'modeloLBPHFaceNuevo.xml')
         print("[INFO] Modelo almacenado.")
 
         return False

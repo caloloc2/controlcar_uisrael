@@ -75,7 +75,7 @@ def gen():
     while True:
         imagen, reconocido, usuario = camara.reconocimiento()
         if (reconocido and bloqueoActivado and nuevoUsuario == False):
-            print("[INFO] "+str(usuario)+ " ha activado el automovil.")
+            print("[INFO] Se ha activado el automovil.")
             bloqueoActivado = False 
             camara.setEstado(0)
             bloqueo.accion(False)
