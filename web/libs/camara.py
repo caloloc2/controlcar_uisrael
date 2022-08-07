@@ -47,3 +47,4 @@ class Camara:
             return cv2.imencode('.jpg', image)
     
     def captura(self):
+        return False
