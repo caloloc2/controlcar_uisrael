@@ -1,3 +1,4 @@
+from ast import Not
 from glob import glob
 from flask import Flask, Response, render_template
 from libs.camara import Camara
@@ -14,6 +15,7 @@ llave = GPIORasp(23, 0)
 # Activa el bloqueo
 bloqueo.accion(True)
 bloqueoActivado = True
+nuevoUsuario = False
 print("[INFO] Bloqueo activado automaticamente.")
 
 # Inicializa las variables de configuracion
@@ -30,30 +32,30 @@ f.start()
 servidor = ServerBridge()
 def revision():
     global servidor
-    while (True):
+    global nuevoUsuario
+    while (True and nuevoUsuario == False):
         data = servidor.get('anadirUsuario.php')
         print(data['estado'])
         time.sleep(1)
-        # estadoLed = data['estado']['bloqueo']
 
 sv = Thread(target = revision)
 sv.daemon = True
 sv.start()
 
 def switchLlave():
-    while bloqueoActivado:
+    global servidor
+    global nuevoUsuario
+    while (bloqueoActivado and nuevoUsuario == False):
         estadoAlarma = llave.read()
         if (estadoAlarma == 0):
-            # print("Contacto accionado")
             camara.setEstado(1)
-            # params = {'valor': 1}
-            # self.server.get('alarma.php', params)
+            params = {'valor': 1}
+            servidor.get('alarma.php', params)
         elif (estadoAlarma == 1):
             camara.setEstado(0)
-            # params = {'valor': 0}
-            # self.server.get('alarma.php', params)
-            # print("Sin Contacto")
-        time.sleep(1)
+            params = {'valor': 0}
+            servidor.get('alarma.php', params)
+        time.sleep(1.5)
 
 sw = Thread(target = switchLlave)
 sw.daemon = True
@@ -65,9 +67,10 @@ def index():
 
 def gen():
     global bloqueoActivado
+    global nuevoUsuario
     while True:
         imagen, reconocido, usuario = camara.reconocimiento()
-        if (reconocido and bloqueoActivado):
+        if (reconocido and bloqueoActivado and nuevoUsuario == False):
             print("[INFO] "+str(usuario)+ " ha activado el automovil.")
             bloqueoActivado = False 
             camara.setEstado(0)
