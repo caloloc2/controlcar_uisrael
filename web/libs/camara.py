@@ -1,11 +1,8 @@
 import os, time, cv2
-from libs.httpRequest import ServerBridge
-from threading import Thread
 
 class Camara:
 
     def __init__(self):
-        self.servidor = ServerBridge()
         self.dataPath = 'Data'
         self.imagePaths = os.listdir(self.dataPath)
         print("[Iniciando camara...]")
@@ -20,16 +17,9 @@ class Camara:
         print("[Listo para reconocimiento]")
 
         self.estado = 0
-
-        f = Thread(target = self.crontab)
-        f.daemon = True
-        f.start()
     
-    def crontab(self):
-        while True:
-            data = self.servidor.get('index.php')
-            print(data)
-            time.sleep(3)
+    def setEstado(self, estado):
+        self.estado = estado
 
     def reconocimiento(self):
         while True:

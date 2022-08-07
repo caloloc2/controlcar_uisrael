@@ -1,8 +1,15 @@
 from flask import Flask, Response, render_template
 from libs.camara import Camara
+from threading import Thread
+from libs.firebase import Firebase
 
 camara = Camara()
 app = Flask(__name__)
+
+firebase = Firebase()
+f = Thread(target = firebase.lectura)
+f.daemon = True
+f.start()
 
 @app.route('/')
 def index():
