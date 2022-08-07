@@ -36,9 +36,8 @@ def revision():
     global nuevoUsuario
     while (True):
         data = servidor.get('anadirUsuario.php')
-        print(data['estado'])
         if (data['estado']):
-            camara.setEstado(2, 'Nombre')
+            camara.setEstado(2, data['nombre'])
             nuevoUsuario = True 
         
         time.sleep(1)
