@@ -24,6 +24,7 @@ class Camara:
         self.estado = 0
         self.reconocido = False 
         self.usuario = None
+        self.nuevoUsuario = False
         self.count = 0
     
     def setEstado(self, estado):
@@ -63,7 +64,8 @@ class Camara:
                 except:
                     print("Error")
             
-            elif (self.estado == 2):                
+            elif (self.estado == 2):
+                self.nuevoUsuario = True                
                 frame =  imutils.resize(image, width=640)
                 gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
                 auxFrame = frame.copy()
@@ -80,8 +82,9 @@ class Camara:
                     print("[INFO] Captura de perfil de usuario terminado.")
                     self.estado = 0
                     self.count = 0
+                    self.nuevoUsuario = False
 
-            return [cv2.imencode('.jpg', image), self.reconocido, self.usuario]
+            return [cv2.imencode('.jpg', image), self.reconocido, self.nuevoUsuario]
     
     def captura(self):
         return False

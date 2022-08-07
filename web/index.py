@@ -33,9 +33,12 @@ servidor = ServerBridge()
 def revision():
     global servidor
     global nuevoUsuario
-    while (True and nuevoUsuario == False):
+    while (True):
         data = servidor.get('anadirUsuario.php')
         print(data['estado'])
+        if (data['estado']):
+            nuevoUsuario = True 
+        
         time.sleep(1)
 
 sv = Thread(target = revision)
@@ -75,6 +78,10 @@ def gen():
             bloqueoActivado = False 
             camara.setEstado(0)
             bloqueo.accion(False)
+        
+        if (nuevoUsuario and usuario):
+            print('[INFO] Termina toma de perfil de usuario.')
+            nuevoUsuario = False 
 
         ret, jpeg = imagen
         frame = jpeg.tobytes()
