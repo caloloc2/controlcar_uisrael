@@ -1,9 +1,11 @@
+from glob import glob
 from flask import Flask, Response, render_template
 from libs.camara import Camara
 from threading import Thread
 from libs.firebase import Firebase
 from libs.setup import Setup
 from libs.gpio import GPIORasp
+from libs.httpRequest import ServerBridge
 import time
 
 bloqueo = GPIORasp(21)
@@ -24,6 +26,17 @@ firebase = Firebase()
 f = Thread(target = firebase.lectura)
 f.daemon = True
 f.start()
+
+servidor = ServerBridge()
+def revision():
+    global servidor
+    data = servidor.get('anadirUsuario.php')
+    print(data)
+    # estadoLed = data['estados']['bloqueo']
+
+sv = Thread(target = revision)
+sv.daemon = True
+sv.start()
 
 def switchLlave():
     while bloqueoActivado:
