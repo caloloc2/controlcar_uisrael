@@ -1,4 +1,5 @@
 import os, time, cv2, imutils
+import numpy as np
 
 class Camara:
 
