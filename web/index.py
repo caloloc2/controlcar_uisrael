@@ -1,5 +1,6 @@
 from ast import Not
 from glob import glob
+from pickle import GLOBAL
 from re import A
 from flask import Flask, Response, render_template
 from libs.camara import Camara
@@ -34,6 +35,7 @@ servidor = ServerBridge()
 def revision():
     global servidor
     global nuevoUsuario
+    global bloqueoActivado
     while (True):
         data = servidor.get('anadirUsuario.php')
         if (data['estado']):
@@ -41,6 +43,8 @@ def revision():
             nuevoUsuario = True
         elif(data['entrena']):
             camara.entrenamiento()
+            bloqueoActivado = True
+            nuevoUsuario = False
         
         time.sleep(1)
 
