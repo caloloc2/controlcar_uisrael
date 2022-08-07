@@ -11,6 +11,7 @@ llave = GPIORasp(23, 0)
 
 # Activa el bloqueo
 bloqueo.accion(True)
+bloqueoActivado = True
 print("[INFO] Bloqueo activado automaticamente.")
 
 # Inicializa las variables de configuracion
@@ -25,7 +26,7 @@ f.daemon = True
 f.start()
 
 def switchLlave():
-    while True:
+    while bloqueoActivado:
         estadoAlarma = llave.read()
         if (estadoAlarma == 0):
             # print("Contacto accionado")
