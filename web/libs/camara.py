@@ -23,6 +23,7 @@ class Camara:
         self.estado = 0
         self.reconocido = False 
         self.usuario = None
+        self.count = 0
     
     def setEstado(self, estado):
         self.estado = estado
@@ -72,11 +73,12 @@ class Camara:
                     rostro = auxFrame[y:y+h,x:x+w]
                     rostro = cv2.resize(rostro,(150,150),interpolation=cv2.INTER_CUBIC)
                     cv2.imwrite(self.personPath + '/rostro_{}.jpg'.format(count),rostro)
-                    count = count + 1
+                    self.count = self.count + 1
                 
-                if (count>=300):
+                if (self.count >= 300):
                     print("[INFO] Captura de perfil de usuario terminado.")
                     self.estado = 0
+                    self.count = 0
 
             return [cv2.imencode('.jpg', image), self.reconocido, self.usuario]
     
