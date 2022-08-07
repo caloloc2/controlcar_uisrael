@@ -43,6 +43,7 @@ class Camara:
                             # LBPHFace
                             if result[1] < 70:
                                 self.usuario = self.imagePaths[result[0]]
+                                self.reconocido = True
                                 cv2.putText(image,'{}'.format(self.usuario),(x,y-25),2,1.1,(0,255,0),1,cv2.LINE_AA)
                                 cv2.rectangle(image, (x,y),(x+w,y+h),(0,255,0),2)
                             else:

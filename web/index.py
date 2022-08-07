@@ -50,11 +50,10 @@ def index():
 def gen():
     while True:
         imagen, reconocido, usuario = camara.reconocimiento()
-        print(reconocido)
-        # if (reconocido):
-        #     print("[INFO] "+str(usuario)+ " ha activado el automovil.")
-        #     camara.setEstado(0)
-        #     bloqueo.accion(False)
+        if (reconocido):
+            print("[INFO] "+str(usuario)+ " ha activado el automovil.")
+            camara.setEstado(0)
+            bloqueo.accion(False)
 
         ret, jpeg = imagen
         frame = jpeg.tobytes()
