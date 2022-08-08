@@ -47,6 +47,8 @@ n.daemon = True
 n.start()
 
 servidor = ServerBridge()
+params = {'info': ""}
+servidor.get('estadoReconocimiento.php', params)
 def revision():
     global servidor
     global nuevoUsuario
