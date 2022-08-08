@@ -73,7 +73,6 @@ def bloqueoManual():
     global bloqueo
 
     while(True):
-        print("enCamino", enCamino)
         if (enCamino):
             data = servidor.get('index.php')
             estadoLed = data['estados']['bloqueo']
