@@ -107,6 +107,7 @@ def switchLlave():
             servidor.get('alarma.php', params)
             enCamino = False 
             bloqueoActivado = True 
+            bloqueo.accion(True)
         time.sleep(1.5)
 
 sw = Thread(target = switchLlave)
