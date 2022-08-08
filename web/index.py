@@ -10,6 +10,7 @@ from libs.setup import Setup
 from libs.gpio import GPIORasp
 from libs.httpRequest import ServerBridge
 from libs.gps import GPS
+from libs.nfc import NFCLector
 import time
 
 bloqueo = GPIORasp(21)
@@ -37,6 +38,12 @@ firebase = Firebase()
 f = Thread(target = firebase.lectura)
 f.daemon = True
 f.start()
+
+# Inicia servicio de lectura de NFC RFID
+nfc = NFCLector()
+n = Thread(target = nfc.lectura)
+n.daemon = True
+n.start()
 
 servidor = ServerBridge()
 def revision():
