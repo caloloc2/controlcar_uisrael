@@ -113,6 +113,8 @@ def gen():
         
         if (nuevoUsuario and usuario == False):
             print('[INFO] Termina toma de perfil de usuario.')
+            params = {'info': "Iniciar Entrenamiento."}
+            servidor.get('estadoReconocimiento.php', params)
             nuevoUsuario = False 
             camara.setEstado(0)
 
