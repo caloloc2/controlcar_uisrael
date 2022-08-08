@@ -11,7 +11,7 @@ $database = $factory->createDatabase();
 
 $respuesta['estado'] = false;
 
-if ((isset($_GET['info'])) && (!empty($_GET['info']))){
+if (isset($_GET['info'])){
     $database->getReference('informacion')->set($_GET['info']);
     $respuesta['estado'] = true;
 }
