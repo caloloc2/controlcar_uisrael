@@ -69,7 +69,7 @@ def bloqueoManual():
     global servidor
     global bloqueoActivado
     global bloqueo
-    while (bloqueoActivado == False):
+    while (True):
         data = servidor.get('index.php')
         estadoLed = data['estados']['bloqueo']
         bloqueo.accion(estadoLed)
