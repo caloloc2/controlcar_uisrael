@@ -23,7 +23,7 @@ class NFCLector:
             codigo = self.__convert__(cardData)
             print(codigo)
 
-            if (codigo == 90674177285458845226483794):
+            if (codigo == 90674177285458846270261753):
                 self.naranja.accion(True)
                 params = {'valor': 1}
                 self.server.get('inicio.php', params)
