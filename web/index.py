@@ -71,13 +71,15 @@ def bloqueoManual():
     global servidor
     global enCamino
     global bloqueo
-    
-    while ((enCamino) and (True)):
-        data = servidor.get('index.php')
-        estadoLed = data['estados']['bloqueo']
-        bloqueo.accion(estadoLed)
-        print("[INFO] Leyendo bloqueo", estadoLed)
-        time.sleep(1)
+
+    while(True):
+        print("enCamino", enCamino)
+        if (enCamino):
+            data = servidor.get('index.php')
+            estadoLed = data['estados']['bloqueo']
+            bloqueo.accion(estadoLed)
+            print("[INFO] Leyendo bloqueo", estadoLed)
+            time.sleep(1)
 
 sv = Thread(target = revision)
 sv.daemon = True
@@ -93,7 +95,7 @@ def switchLlave():
     global enCamino
     global bloqueoActivado
 
-    while (nuevoUsuario == False):
+    while ((bloqueoActivado) and (nuevoUsuario == False)):
         estadoAlarma = llave.read()
         if (estadoAlarma == 0):
             camara.setEstado(1)
