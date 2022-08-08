@@ -101,7 +101,8 @@ def switchLlave():
             params = {'valor': 1}
             servidor.get('alarma.php', params)
         elif (estadoAlarma == 1):
-            camara.setEstado(0)
+            if (nuevoUsuario == False):
+                camara.setEstado(0)
             params = {'valor': 0}
             servidor.get('alarma.php', params)
             enCamino = False 
