@@ -122,5 +122,6 @@ class Camara:
         self.face_recognizer.read(self.path + 'modeloLBPHFaceNuevo.xml')
         params = {'info': "Entrenado."}
         self.servidor.get('estadoReconocimiento.php', params)
+        self.estado = 0
 
         return False
