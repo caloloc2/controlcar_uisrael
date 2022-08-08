@@ -68,6 +68,7 @@ def revision():
 def bloqueoManual():
     global servidor
     global bloqueoActivado
+    global bloqueo
     while (bloqueoActivado == False):
         data = servidor.get('index.php')
         estadoLed = data['estados']['bloqueo']
