@@ -65,9 +65,23 @@ def revision():
         
         time.sleep(1)
 
+def bloqueoManual():
+    global servidor
+    global bloqueoActivado
+    while (bloqueoActivado == False):
+        data = servidor.get('index.php')
+        estadoLed = data['estados']['bloqueo']
+        bloqueo.accion(estadoLed)
+        
+        time.sleep(1)
+
 sv = Thread(target = revision)
 sv.daemon = True
 sv.start()
+
+bl = Thread(target = bloqueoManual)
+bl.daemon = True
+bl.start()
 
 def switchLlave():
     global servidor
