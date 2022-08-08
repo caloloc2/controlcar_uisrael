@@ -56,3 +56,5 @@ class GPS:
                         i = 0
         except KeyboardInterrupt:
             print("Cancelado")
+        except:
+            print("Something else went wrong")
