@@ -1,9 +1,11 @@
 import os, time, cv2, imutils
+from libs.httpRequest import ServerBridge
 import numpy as np
 
 class Camara:
 
     def __init__(self):
+        self.servidor = ServerBridge
         self.path = '/home/pi/controlcar_uisrael/web/'
         self.dataPath = '/home/pi/controlcar_uisrael/web/Data'
 
@@ -91,7 +93,7 @@ class Camara:
                     self.count = 0
                     self.nuevoUsuario = False
 
-            return [cv2.imencode('.jpg', image), self.reconocido, self.nuevoUsuario]
+            return [cv2.imencode('.jpg', image), self.reconocido, self.nuevoUsuario, self.usuario]
     
     def entrenamiento(self):
         print("[INFO] Iniciando entrenamiento.")

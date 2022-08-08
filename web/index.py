@@ -1,5 +1,6 @@
 from ast import Not
 from glob import glob
+from os import getloadavg
 from pickle import GLOBAL
 from re import A
 from flask import Flask, Response, render_template
@@ -92,12 +93,16 @@ def index():
 def gen():
     global bloqueoActivado
     global nuevoUsuario
+    global servidor
+
     contador = 0
     while True:
-        imagen, reconocido, usuario = camara.reconocimiento()
+        imagen, reconocido, usuario, nombreUsuario = camara.reconocimiento()
         if (reconocido and bloqueoActivado and nuevoUsuario == False):
             if (contador >= 50):
                 print("[INFO] Se ha activado el automovil.")
+                params = {'info': nombreUsuario+ " ha activado el automovil."}
+                servidor.get('estadoReconocimiento.php', params)
                 bloqueoActivado = False 
                 camara.setEstado(0)
                 bloqueo.accion(False)
