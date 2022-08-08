@@ -79,7 +79,7 @@ def bloqueoManual():
             estadoLed = data['estados']['bloqueo']
             bloqueo.accion(estadoLed)
             print("[INFO] Leyendo bloqueo", estadoLed)
-            time.sleep(1)
+        time.sleep(1)
 
 sv = Thread(target = revision)
 sv.daemon = True
