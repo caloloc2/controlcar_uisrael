@@ -5,7 +5,7 @@ import numpy as np
 class Camara:
 
     def __init__(self):
-        self.servidor = ServerBridge
+        self.servidor = ServerBridge()
         self.path = '/home/pi/controlcar_uisrael/web/'
         self.dataPath = '/home/pi/controlcar_uisrael/web/Data'
 
