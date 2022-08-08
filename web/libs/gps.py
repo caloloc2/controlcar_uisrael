@@ -30,16 +30,25 @@ class GPS:
       
     
     def __explodeData(self, data):
-        GPGGA_data_available = data.find(self.module)
-        if (GPGGA_data_available>0):
-            GPGGA_buffer = data.split(self.module, 1)[1]
-            NMEA_buff = (GPGGA_buffer.split(','))
-            gpsTime = NMEA_buff[0]
-            latitude = self.__calculoPosition(NMEA_buff[2])
-            longitude = self.__calculoPosition(NMEA_buff[4])
-            velocity = self.__kph(NMEA_buff[6])
-            gpsDate = NMEA_buff[8]
-            return [latitude, longitude, velocity, gpsDate, gpsTime]
+        latitude = None 
+        longitude = None
+        velocity = None
+        gpsDate = None 
+        gpsTime = None 
+        try:
+            GPGGA_data_available = data.find(self.module)
+            if (GPGGA_data_available>0):
+                GPGGA_buffer = data.split(self.module, 1)[1]
+                NMEA_buff = (GPGGA_buffer.split(','))
+                gpsTime = NMEA_buff[0]
+                latitude = self.__calculoPosition(NMEA_buff[2])
+                longitude = self.__calculoPosition(NMEA_buff[4])
+                velocity = self.__kph(NMEA_buff[6])
+                gpsDate = NMEA_buff[8]
+        except:
+            print("-")
+        
+        return [latitude, longitude, velocity, gpsDate, gpsTime]
 
     def readPosition(self):
         try:
@@ -58,3 +67,4 @@ class GPS:
             print("Cancelado")
         except:
             print("Something else went wrong")
+            self.gpsModule = serial.Serial("/dev/serial0")
