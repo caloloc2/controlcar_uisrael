@@ -65,11 +65,12 @@ def revision():
         
         time.sleep(1)
 
+enCamino = False 
 def bloqueoManual():
     global servidor
-    global bloqueoActivado
+    global enCamino
     global bloqueo
-    while (True):
+    while (enCamino):
         data = servidor.get('index.php')
         estadoLed = data['estados']['bloqueo']
         bloqueo.accion(estadoLed)
@@ -87,6 +88,8 @@ bl.start()
 def switchLlave():
     global servidor
     global nuevoUsuario
+    global enCamino
+
     while (bloqueoActivado and nuevoUsuario == False):
         estadoAlarma = llave.read()
         if (estadoAlarma == 0):
@@ -97,6 +100,8 @@ def switchLlave():
             camara.setEstado(0)
             params = {'valor': 0}
             servidor.get('alarma.php', params)
+            enCamino = False 
+            bloqueoActivado = True 
         time.sleep(1.5)
 
 sw = Thread(target = switchLlave)
@@ -111,6 +116,7 @@ def gen():
     global bloqueoActivado
     global nuevoUsuario
     global servidor
+    global enCamino
 
     contador = 0
     while True:
@@ -121,6 +127,7 @@ def gen():
                 params = {'info': nombreUsuario+ " ha activado el automovil."}
                 servidor.get('estadoReconocimiento.php', params)
                 bloqueoActivado = False 
+                enCamino = True
                 camara.setEstado(0)
                 bloqueo.accion(False)
                 contador = 0
