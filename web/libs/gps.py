@@ -5,6 +5,7 @@ from libs.httpRequest import ServerBridge
 class GPS:
 
     def __init__(self, module = "$GPRMC,"):
+        print("[INFO] GPS conectado y leyendo información de ubicación.")
         self.gpsModule = serial.Serial("/dev/serial0")
         self.module = module
         self.internet = ServerBridge()
@@ -57,7 +58,7 @@ class GPS:
                 received_data = (str)(self.gpsModule.readline())
                 linea = self.__explodeData(received_data)
                 if (linea != None):
-                    print(linea)
+                    # print(linea)
                     i += 1
                     if (i >= self.contador):
                         params = {'lng': linea[0], 'lat': linea[1]}
@@ -66,5 +67,5 @@ class GPS:
         except KeyboardInterrupt:
             print("Cancelado")
         except:
-            print("Something else went wrong")
+            print("El dispositivo GPS no puede ser leido por el puerto. Revise conexión y reinicie.")
             self.gpsModule = serial.Serial("/dev/serial0")
