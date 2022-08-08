@@ -1,4 +1,5 @@
 from ast import Not
+from base64 import encode
 from glob import glob
 from os import getloadavg
 from pickle import GLOBAL
