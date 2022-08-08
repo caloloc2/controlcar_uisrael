@@ -78,7 +78,6 @@ def bloqueoManual():
             data = servidor.get('index.php')
             estadoLed = data['estados']['bloqueo']
             bloqueo.accion(estadoLed)
-            print("[INFO] Leyendo bloqueo", estadoLed)
         time.sleep(1)
 
 sv = Thread(target = revision)
@@ -95,10 +94,11 @@ def switchLlave():
     global enCamino
     global bloqueoActivado
 
-    while ((bloqueoActivado) and (nuevoUsuario == False)):
+    while (True):
         estadoAlarma = llave.read()
         if (estadoAlarma == 0):
-            camara.setEstado(1)
+            if ((bloqueoActivado) and (nuevoUsuario == False)):
+                camara.setEstado(1)
             params = {'valor': 1}
             servidor.get('alarma.php', params)
         elif (estadoAlarma == 1):
