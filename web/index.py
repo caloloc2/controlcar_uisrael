@@ -71,8 +71,8 @@ def bloqueoManual():
     global servidor
     global enCamino
     global bloqueo
-    print("enCamino", enCamino)
-    while (enCamino):
+    
+    while ((enCamino) and (True)):
         data = servidor.get('index.php')
         estadoLed = data['estados']['bloqueo']
         bloqueo.accion(estadoLed)
