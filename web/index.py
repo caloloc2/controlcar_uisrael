@@ -89,6 +89,7 @@ def switchLlave():
     global servidor
     global nuevoUsuario
     global enCamino
+    global bloqueoActivado
 
     while (bloqueoActivado and nuevoUsuario == False):
         estadoAlarma = llave.read()
