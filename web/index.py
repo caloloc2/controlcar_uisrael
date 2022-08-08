@@ -92,7 +92,7 @@ def switchLlave():
     global enCamino
     global bloqueoActivado
 
-    while (bloqueoActivado and nuevoUsuario == False):
+    while (nuevoUsuario == False):
         estadoAlarma = llave.read()
         if (estadoAlarma == 0):
             camara.setEstado(1)
