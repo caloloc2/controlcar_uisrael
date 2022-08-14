@@ -9,7 +9,7 @@ class GPS:
         self.gpsModule = serial.Serial("/dev/serial0")
         self.module = module
         self.internet = ServerBridge()
-        self.contador = 2
+        self.contador = 15
 
     def __calculoPosition(self, pos = 0):
         try:
@@ -57,7 +57,7 @@ class GPS:
                 received_data = (str)(self.gpsModule.readline())
                 linea = self.__explodeData(received_data)
                 if (linea[0] != None):
-                    print(linea, i)
+                    # print(linea, i)
                     i += 1
                     if (i >= self.contador):
                         params = {'lng': linea[0], 'lat': linea[1]}
