@@ -96,6 +96,7 @@ def switchLlave():
 
     while (True):
         estadoAlarma = llave.read()
+        print(estadoAlarma)
         if (estadoAlarma == 0):
             if ((bloqueoActivado) and (nuevoUsuario == False)):
                 camara.setEstado(1)
