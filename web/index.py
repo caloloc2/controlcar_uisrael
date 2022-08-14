@@ -96,12 +96,12 @@ def switchLlave():
 
     while (True):
         estadoAlarma = llave.read()
-        if (estadoAlarma == 1):
+        if (estadoAlarma == 0):
             if ((bloqueoActivado) and (nuevoUsuario == False)):
                 camara.setEstado(1)
             params = {'valor': 1}
             servidor.get('alarma.php', params)
-        elif (estadoAlarma == 0):
+        elif (estadoAlarma == 1):
             if (nuevoUsuario == False):
                 camara.setEstado(0)
             params = {'valor': 0}
