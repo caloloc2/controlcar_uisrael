@@ -16,7 +16,8 @@ from libs.nfc import NFCLector
 import time
 
 bloqueo = GPIORasp(21)
-llave = GPIORasp(23, 0)
+llave = GPIORasp(23, 0) # contacto
+
 
 # Activa el bloqueo
 bloqueo.accion(True)
