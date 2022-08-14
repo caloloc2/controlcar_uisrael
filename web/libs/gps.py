@@ -68,3 +68,4 @@ class GPS:
         except:
             print("El dispositivo GPS no puede ser leido por el puerto. Revise conexión y reinicie.")
             self.gpsModule = serial.Serial("/dev/serial0")
+            self.readPosition()
