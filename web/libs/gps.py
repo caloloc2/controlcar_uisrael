@@ -9,7 +9,7 @@ class GPS:
         self.gpsModule = serial.Serial("/dev/serial0")
         self.module = module
         self.internet = ServerBridge()
-        self.contador = 15
+        self.contador = 2
 
     def __calculoPosition(self, pos = 0):
         try:
