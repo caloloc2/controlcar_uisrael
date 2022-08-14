@@ -29,7 +29,6 @@ class GPS:
         except:
             return 0
       
-    
     def __explodeData(self, data):
         latitude = None 
         longitude = None
@@ -58,7 +57,7 @@ class GPS:
                 received_data = (str)(self.gpsModule.readline())
                 linea = self.__explodeData(received_data)
                 if (linea != None):
-                    # print(linea)
+                    print(linea)
                     i += 1
                     if (i >= self.contador):
                         params = {'lng': linea[0], 'lat': linea[1]}
