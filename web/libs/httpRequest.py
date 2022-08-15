@@ -11,5 +11,10 @@ class ServerBridge:
         return response.json()
     
     def get(self, module, params = None):
-        response = requests.get(url = self.url + module, params = params)
-        return response.json() 
+        try:
+            response = requests.get(url = self.url + module, params = params)
+            return response.json()
+        except:
+            print("Sin Acceso de Internet")
+            return {'estado': False}
+         
